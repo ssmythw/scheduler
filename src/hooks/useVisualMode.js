@@ -1,10 +1,13 @@
-/*
-Create a transition function within useVisualMode that will take in a new mode and 
-update the mode state with the new value. If we used useState 
-to initialize the mode state in useVisualMode, what will we have to do to update the mode value?
-*/
-
 const { useState } = require("react");
+
+/*
+usVisualMode is essentially a state machine for the Appointment component. It has a set mode
+and a history of modes which is contained in an array. There are 2 function contained.
+1) transition -> transitions to the next state
+  - if replace is true then we want to pop off the previous mode and then push on the new one 
+  since we want to skip that mode if we go backwards.
+2) back -> moves back one step in the history array using .pop().
+*/
 
 const useVisualMode = (passedMode) => {
   const [mode, setMode] = useState(passedMode);

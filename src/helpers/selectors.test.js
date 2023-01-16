@@ -4,6 +4,15 @@ import {
   getInterviewersForDay,
 } from "./selectors";
 
+/*
+STATE STRUCTURE
+
+Most of the pertinent information is contained in the days slice of the state. It refers to the 
+day name and all of the appointments and interviewers on that day. The appointments slice of state
+is just a more in depth look at the appointments which gives more info, additionally the interviewers slice
+of state does the same thing, just gives additional info of the itnerviewers. 
+*/
+
 const state = {
   days: [
     {

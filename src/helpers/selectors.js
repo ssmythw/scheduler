@@ -1,23 +1,23 @@
+/*
+getAppointmentsForDay retrieves a list of appointments speicified by a certain day 
+(day parameter). This function uses the day.appointments slice of the state to get the appointment id's
+then returns the appointments objects from the appointments slice of the state.
+*/
+
 function getAppointmentsForDay(state, day) {
-  /*
-    We need to start by finding the object in our state.days array who's name matches the provided day. 
-    With this information we can now access that specific days appointment array.
-    */
   let selectedDay;
 
+  //Get the specific day object that is referred to by the day parameter
   for (let item of state.days) {
     if (item.name === day) {
       selectedDay = item;
     }
   }
 
+  //If that day is not in the state then return an empty array.
   if (!selectedDay) {
     return [];
   }
-  /*
-  Once we have access to the appointment array for the given day, we'll need to iterate through it, comparing 
-  where it's id matches the id of states.appointments and return that value.
-  */
 
   let appointments = [];
 
@@ -28,13 +28,15 @@ function getAppointmentsForDay(state, day) {
   return appointments;
 }
 
+/*
+getInterviewersForDay returns a list of interviewers for a particular day as indicated
+by the day parameter that is passed in. 
+*/
+
 function getInterviewersForDay(state, day) {
-  /*
-    We need to start by finding the object in our state.days array who's name matches the provided day. 
-    With this information we can now access that specific days appointment array.
-    */
   let selectedDay;
 
+  //Get the specific day object that is referred to by the day parameter
   for (let item of state.days) {
     if (item.name === day) {
       selectedDay = item;
@@ -44,10 +46,6 @@ function getInterviewersForDay(state, day) {
   if (!selectedDay) {
     return [];
   }
-  /*
-  Once we have access to the appointment array for the given day, we'll need to iterate through it, comparing 
-  where it's id matches the id of states.appointments and return that value.
-  */
 
   let interviewers = [];
 
@@ -58,6 +56,12 @@ function getInterviewersForDay(state, day) {
   return interviewers;
 }
 
+/*
+getInterview returns an object containing itnerview specific information pertaining to the 
+interview tied to a particular appointment. It uses the interviewer id in a particular appointment 
+then returns the interviewer object with that id from the interviewers slice of state. 
+*/
+
 const getInterview = (state, interview) => {
   if (!interview) {
     return null;
@@ -67,7 +71,5 @@ const getInterview = (state, interview) => {
   interviewObj.interviewer = state.interviewers[interview.interviewer];
   return interviewObj;
 };
-
-//getInterview(state, state.appointments["3"].interview);
 
 module.exports = { getAppointmentsForDay, getInterviewersForDay, getInterview };

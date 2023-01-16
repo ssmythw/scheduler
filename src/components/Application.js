@@ -20,27 +20,8 @@ export default function Application(props) {
     interviewers: {},
   });
 
-  const appointments = getAppointmentsForDay(state, state.day);
-  const interviewers = getInterviewersForDay(state, state.day);
-
-  console.log(interviewers);
-
-  const schedule = appointments.map((appointment) => {
-    const interview = getInterview(state, appointment.interview);
-    return (
-      <Appointment
-        key={appointment.id}
-        id={appointment.id}
-        time={appointment.time}
-        interview={interview}
-        interviewers={interviewers}
-      />
-    );
-  });
-
-  // const parsedAppointments = dailyAppointments.map((appointment, idx) => {
-  //   return <Appointment {...appointment} key={appointment.id} />;
-  // });
+  //Use local API to popualte that state. 3 Endpoints are used and promise.all is used
+  //in order to get all values in the then().
 
   useEffect(() => {
     Promise.all([
@@ -56,6 +37,24 @@ export default function Application(props) {
       });
     });
   }, []);
+
+  //Get list of appointments and list of interviewers
+  const appointments = getAppointmentsForDay(state, state.day);
+  const interviewers = getInterviewersForDay(state, state.day);
+
+  //Loop through the appointments array. For each appoointment get the interview
+  const schedule = appointments.map((appointment) => {
+    const interview = getInterview(state, appointment.interview);
+    return (
+      <Appointment
+        key={appointment.id}
+        id={appointment.id}
+        time={appointment.time}
+        interview={interview}
+        interviewers={interviewers}
+      />
+    );
+  });
 
   return (
     <main className="layout">
