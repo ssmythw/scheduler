@@ -28,7 +28,7 @@ import Button from "components/Button";
 import InterviewerList from "components/InterviewerList";
 
 function Form(props) {
-  const [name, setName] = useState(props.student);
+  const [name, setName] = useState(props.student ? props.student : "");
   const [interviewer, setInterviewer] = useState(props.interviewer);
 
   const handleNameChange = (event) => {
@@ -69,7 +69,7 @@ function Form(props) {
           <Button onClick={cancel} danger>
             Cancel
           </Button>
-          <Button onClick={props.onSave} confirm>
+          <Button onClick={() => props.onSave(name, interviewer)} confirm>
             Save
           </Button>
         </section>

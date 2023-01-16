@@ -38,11 +38,32 @@ export default function Application(props) {
     });
   }, []);
 
+  /*
+  the interview key in the appointments object starts off as null
+  but after we run this function it should update the interview object
+  to what is set in the application. Takes in the appoiontment id and 
+  interview object from the Form component.
+  */
+
+  function bookInterview(id, interview) {
+    const appointment = {
+      ...state.appointments[id],
+      interview: { ...interview },
+    };
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment,
+    };
+    setState({ ...state, appointments });
+  }
+
   //Get list of appointments and list of interviewers
   const appointments = getAppointmentsForDay(state, state.day);
   const interviewers = getInterviewersForDay(state, state.day);
 
-  //Loop through the appointments array. For each appoointment get the interview
+  //Loop through the appointments array. For each appoointment get the interviewer and student information
+  //which is in the intervewier slice of state using the interview id in the appointment slice of state.
+  //Return an Appointment component with all of the necessary props.
   const schedule = appointments.map((appointment) => {
     const interview = getInterview(state, appointment.interview);
     return (
@@ -52,6 +73,7 @@ export default function Application(props) {
         time={appointment.time}
         interview={interview}
         interviewers={interviewers}
+        bookInterview={bookInterview}
       />
     );
   });

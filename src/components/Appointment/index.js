@@ -15,6 +15,21 @@ function Appointment(props) {
     props.interview ? SHOW : EMPTY
   );
 
+  /*
+  The save function gets passed to the Form component which captures
+  the name and the interviewer and passes them to the props.onSave as aguments.
+  After, a new interview object is passed to props.bookInterview
+  */
+
+  function save(name, interviewer) {
+    const interview = {
+      student: name,
+      interviewer,
+    };
+    props.bookInterview(props.id, interview);
+    transition(SHOW);
+  }
+
   return (
     <article className="appointment">
       <Header time={props.time} />
@@ -28,7 +43,7 @@ function Appointment(props) {
       {mode === CREATE && (
         <Form
           interviewers={props.interviewers}
-          onSave={() => console.log("onSave clicked!")}
+          onSave={save}
           onCancel={() => transition(EMPTY)}
         />
       )}
