@@ -29,7 +29,9 @@ import InterviewerList from "components/InterviewerList";
 
 function Form(props) {
   const [name, setName] = useState(props.student ? props.student : "");
-  const [interviewer, setInterviewer] = useState(props.interviewer);
+  const [interviewer, setInterviewer] = useState(
+    props.interviewer ? props.interviewer : null
+  );
 
   const handleNameChange = (event) => {
     setName(event.target.value);
