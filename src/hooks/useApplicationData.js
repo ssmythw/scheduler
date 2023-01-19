@@ -39,8 +39,9 @@ const useApplicationData = () => {
       [id]: appointment,
     };
     return Axios.put(`/api/appointments/${id}`, { interview }).then(() => {
-      const days = updateSpots("add");
-      setState((prev) => ({ ...prev, appointments, days }));
+      setState((prev) => ({ ...prev, appointments }));
+      const days = updateSpots();
+      setState((prev) => ({ ...prev, days }));
     });
   };
 
@@ -62,8 +63,9 @@ const useApplicationData = () => {
     };
 
     return Axios.delete(`/api/appointments/${id}`).then(() => {
-      const days = updateSpots("del");
-      setState((prev) => ({ ...prev, appointments, days }));
+      setState((prev) => ({ ...prev, appointments }));
+      const days = updateSpots();
+      setState((prev) => ({ ...prev, days }));
     });
   };
 
@@ -83,8 +85,6 @@ const useApplicationData = () => {
 
     let days = state.days;
     let currDay = days[day.id - 1];
-    if (mode === "add") spots--;
-    else spots++;
     currDay.spots = spots;
     days[(day.id = 1)] = currDay;
     console.log(currDay);
