@@ -4,6 +4,27 @@
 
 Install dependencies with `npm install`.
 
+## Dependencies
+
+- Axios
+- Classnames
+- Normalize
+- React, React-dom, React-scripts
+- Storybook
+- Jest
+- React Testing Library
+- Babel
+- Prop-types
+- Sass
+
+## Running Backend Server 
+
+- Run npm install in scheduler-api directory
+- Create database scheduler_development in psql, using development as the username and password
+- Update .env with require credentials
+- Seed the database by sending GET request to /api/debug/reset
+- Run npm start to start the api on localhost:8001
+
 ## Running Webpack Development Server
 
 ```sh
@@ -21,3 +42,5 @@ npm test
 ```sh
 npm run storybook
 ```
+
+
