@@ -6,8 +6,8 @@ import Form from "./Form";
 import Status from "./Status";
 import Confirm from "./Confirm";
 import Error from "./Error";
-import "./styles.scss";
-import { useVisualMode } from "hooks/useVisualMode";
+import "./styles.scss"
+import useVisualMode from "../../hooks/useVisualMode";
 
 function Appointment(props) {
   const EMPTY = "EMPTY";

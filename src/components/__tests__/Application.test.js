@@ -14,7 +14,6 @@ import {
   queryByDisplayValue,
 } from "@testing-library/react";
 import Application from "components/Application";
-import Axios from "axios";
 
 afterEach(cleanup);
 
@@ -26,7 +25,7 @@ describe("Application", () => {
     expect(getByText("Leopold Silvers")).toBeInTheDocument();
   });
 
-  xit("loads data, books an interview and reduces the spots remaining for the first day by 1", async () => {
+   it("loads data, books an interview and reduces the spots remaining for the first day by 1", async () => {
     //We will only need access to the container value from the render function.
     //The container represents the DOM tree that we are working with, and we can pass it to any of the imported queries.
     /*
@@ -60,7 +59,7 @@ describe("Application", () => {
     expect(getByText(day, "no spots remaining")).toBeInTheDocument();
   });
 
-  xit("loads data, books an interview and reduces the spots remaining for Monday by 1", async () => {
+  it("loads data, books an interview and reduces the spots remaining for Monday by 1", async () => {
     // 1. Render the Application.
     const { container } = render(<Application />);
 
@@ -93,7 +92,7 @@ describe("Application", () => {
     // 9. Check that the DayListItem with the text "Monday" also has the text "no spots remaining".
     expect(getByText(day, "no spots remaining")).toBeInTheDocument();
   });
-  xit("loads data, cancels an interview and increases the spots remaining for Monday by 1", async () => {
+  it("loads data, cancels an interview and increases the spots remaining for Monday by 1", async () => {
     // 1. Render the Application.
     const { container } = render(<Application />);
 
@@ -156,12 +155,4 @@ describe("Application", () => {
     );
     expect(getByText(day, "1 spot remaining")).toBeInTheDocument();
   });
-
-
-  it("shows the save error when failing to save an appointment", () => {
-    axios.put.mockRejectedValueOnce();
-
-  });
-
-  it("shows the delete error when failing to delete an existing appointment", () => {});
 });

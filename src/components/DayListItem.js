@@ -8,6 +8,7 @@ export default function DayListItem(props) {
     "day-list__item--full": props.spots === 0,
   });
 
+  // Check spsots variable to see if it is 0, 1 or more and return text to put on screen.
   const formatSpots = (spots) => {
     let text = "";
     if (spots === 0) {

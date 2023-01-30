@@ -16,13 +16,13 @@ const useVisualMode = (passedMode) => {
   const transition = (newMode, replace = false) => {
     if (replace === true) {
       //remove the previous mode from the histroy array
-      setHistory(history.pop());
-      setHistory([...history, newMode]);
+      setHistory(prev => ([prev.pop()]));
+      setHistory(prev => ([prev, newMode]))
       setMode(newMode);
       //add the newmode to history array
     } else {
       setMode(newMode);
-      setHistory([...history, newMode]);
+      setHistory(prev => ([prev, newMode]))
     }
   };
 
@@ -30,7 +30,7 @@ const useVisualMode = (passedMode) => {
     if (history.length === 1) {
       return;
     }
-    setHistory(history.pop());
+    setHistory(prev => ([prev.pop()]));
     setMode(history[history.length - 1]);
   }
 
@@ -41,4 +41,4 @@ const useVisualMode = (passedMode) => {
   };
 };
 
-module.exports = { useVisualMode };
+module.exports = useVisualMode

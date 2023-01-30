@@ -4,6 +4,13 @@
 
 Install dependencies with `npm install`.
 
+## Screenshots
+
+![ScreenShot](https://raw.githubusercontent.com/ssmythw/scheduler/master/screenshots/Screen%20Shot%202023-01-28%20at%204.22.00%20PM.png)
+![ScreenShot](https://raw.githubusercontent.com/ssmythw/scheduler/master/screenshots/Screen%20Shot%202023-01-28%20at%204.22.09%20PM.png)
+![ScreenShot](https://raw.githubusercontent.com/ssmythw/scheduler/master/screenshots/Screen%20Shot%202023-01-28%20at%204.22.23%20PM.png)
+
+
 ## Dependencies
 
 - Axios

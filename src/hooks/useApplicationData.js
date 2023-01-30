@@ -39,9 +39,9 @@ const useApplicationData = () => {
       [id]: appointment,
     };
     return Axios.put(`/api/appointments/${id}`, { interview }).then(() => {
-      setState((prev) => ({ ...prev, appointments }));
-      const days = updateSpots();
-      setState((prev) => ({ ...prev, days }));
+      const days = updateSpots(id, appointments)
+      setState((prev) => ({ ...prev, appointments, days }));
+
     });
   };
 
@@ -63,40 +63,22 @@ const useApplicationData = () => {
     };
 
     return Axios.delete(`/api/appointments/${id}`).then(() => {
-      setState((prev) => ({ ...prev, appointments }));
-      const days = updateSpots();
-      setState((prev) => ({ ...prev, days }));
-    });
+      const days = updateSpots(id, appointments)
+      setState((prev) => ({ ...prev, appointments, days }));
+    }); 
   };
 
-  const updateSpots = (mode) => {
-    let day = state.days.find((day) => {
-      return day.name === state.day;
-    });
-    //get list of appoointments from the day object
-    let spots = 0;
-    const appointments = day.appointments;
-    //return a list of appointments from the appointments objects where to keys match the day object
-    //count the total number that have an interview set to null
-    appointments.forEach((item) => {
-      if (state.appointments[item].interview === null) spots++;
-    });
-    //update the spots property in the state to be the new value of spots
-
-    let days = state.days;
-    let currDay = days[day.id - 1];
-    currDay.spots = spots;
-    days[(day.id = 1)] = currDay;
-    console.log(currDay);
-    return days;
+  const updateSpots = (appointmentId, appointments) => {
+    const day = state.days.find(el => el.appointments.includes(appointmentId));
+    const spots = day.appointments.filter(id => appointments[id].interview === null).length;
+    return state.days.map(el => el.appointments.includes(appointmentId) ? {...el, spots} : el);
   };
 
   return {
     state,
     setDay,
     cancelInterview,
-    bookInterview,
-    updateSpots,
+    bookInterview
   };
 };
 

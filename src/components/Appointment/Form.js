@@ -1,28 +1,3 @@
-/*
-Props (Edit story)
-
-student:String
-interviewers:Array
-interviewer:Number
-onSave:Function
-onCancel:Function
-
-State
-
-student:String
-interviewer:Number
-
-*/
-
-/*
-Create Story 
-
-interviewers:Array
-onSave:Function
-onCancel:Function
-
-*/
-
 import React, { Component, useState } from "react";
 import Button from "components/Button";
 import InterviewerList from "components/InterviewerList";
@@ -57,7 +32,6 @@ function Form(props) {
       setError("Please select an interviewer");
       return;
     }
-    setError("");
     props.onSave(name, interviewer);
   };
 

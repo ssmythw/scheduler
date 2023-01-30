@@ -2,7 +2,7 @@ import classNames from "classnames";
 import React from "react";
 import "./InterviewerListItem.scss";
 
-//id={interviewer.id} name={interviewer.name} avatar={interviewer.avatar} setInterviewer={action("setInterviewer") selected}
+
 
 function InterviewerListItem(props) {
   const { name, avatar, setInterviewer, selected } = props;

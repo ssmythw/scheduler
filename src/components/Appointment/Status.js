@@ -1,9 +1,5 @@
 import React from "react";
 
-/*
-message:String eg. "Deleting"
-*/
-
 function status(props) {
   return (
     <main className="appointment__card appointment__card--status">
