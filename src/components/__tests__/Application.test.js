@@ -18,14 +18,14 @@ import Application from "components/Application";
 afterEach(cleanup);
 
 describe("Application", () => {
-  xit("changes the schedule when a new day is selected", async () => {
+  it("changes the schedule when a new day is selected", async () => {
     const { getByText } = render(<Application />);
     await waitForElement(() => getByText("Monday"));
     fireEvent.click(getByText("Tuesday"));
     expect(getByText("Leopold Silvers")).toBeInTheDocument();
   });
 
-   it("loads data, books an interview and reduces the spots remaining for the first day by 1", async () => {
+  it("loads data, books an interview and reduces the spots remaining for the first day by 1", async () => {
     //We will only need access to the container value from the render function.
     //The container represents the DOM tree that we are working with, and we can pass it to any of the imported queries.
     /*

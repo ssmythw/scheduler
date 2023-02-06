@@ -6,7 +6,7 @@ import Form from "./Form";
 import Status from "./Status";
 import Confirm from "./Confirm";
 import Error from "./Error";
-import "./styles.scss"
+import "./styles.scss";
 import useVisualMode from "../../hooks/useVisualMode";
 
 function Appointment(props) {
@@ -71,11 +71,7 @@ function Appointment(props) {
         />
       )}
       {mode === CREATE && (
-        <Form
-          interviewers={props.interviewers}
-          onSave={save}
-          onCancel={() => transition(EMPTY)}
-        />
+        <Form interviewers={props.interviewers} onSave={save} onCancel={back} />
       )}
       {mode === EDIT && (
         <Form
@@ -83,7 +79,7 @@ function Appointment(props) {
           interviewers={props.interviewers}
           interviewer={props.interview.interviewer.id}
           onSave={save}
-          onCancel={() => transition(SHOW)}
+          onCancel={back}
         />
       )}
       {mode === SAVING && <Status message={"Saving"} />}
@@ -96,9 +92,11 @@ function Appointment(props) {
         />
       )}
       {mode === ERROR_DELETE && (
-        <Error message={"Could not cancel appoointment"} />
+        <Error message={"Could not cancel appoointment"} onClose={back} />
       )}
-      {mode === ERROR_SAVE && <Error message={"Could not save appoointment"} />}
+      {mode === ERROR_SAVE && (
+        <Error message={"Could not save appoointment"} onClose={back} />
+      )}
     </article>
   );
 }
